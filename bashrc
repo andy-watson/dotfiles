@@ -23,29 +23,35 @@ LSCOLORS=exfxbxbxxxbxbxababxxxx
 # Os specific customisations
 case "$OSTYPE" in
     "darwin10.0")
-	# Enthought python
-	PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+        # Enthought python
+        PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 
-	if [ -d /opt/local/bin ]; then	    
-	    PATH="$PATH:/opt/local/bin"
-	    MANPATH="$MANPATH:/opt/local/man"
-	fi
-	# For simpl library dependancies ldd -> otool
-	alias ldd="otool -L"
+        # git
+        if [ -d /usr/local/git ]; then
+            PATH="/usr/local/git/bin:$PATH"
+            MANPATH="/usr/local/git/share/man:$MANPATH"
+        fi
 
-	# Use Carbon Emacs app over standard command line version
-	if [ -x "/Applications/Emacs.app" ]; then
-	    alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-	fi
+        if [ -d /opt/local/bin ]; then      
+            PATH="$PATH:/opt/local/bin"
+            MANPATH="$MANPATH:/opt/local/man"
+        fi
+        # For simpl library dependancies ldd -> otool
+        alias ldd="otool -L"
 
-	alias ls='ls -G'
-	alias grep='grep --colour=auto'
-	;;
+        # Use Carbon Emacs app over standard command line version
+        if [ -x "/Applications/Emacs.app" ]; then
+            alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+        fi
+
+        alias ls='ls -G'
+        alias grep='grep --colour=auto'
+        ;;
     "linux-gnu")
-	alias ls='ls --color=auto'
-	alias grep='grep --colour=auto'
+        alias ls='ls --color=auto'
+        alias grep='grep --colour=auto'
 
-	R_LIBS_USER=~/.R/i686-pc-linux-gnu-library/2.14
-	;;
+        R_LIBS_USER=~/.R/i686-pc-linux-gnu-library/2.14
+        ;;
 esac
 

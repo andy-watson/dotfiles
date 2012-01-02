@@ -56,12 +56,8 @@
 ;;------------------------------------------------------------
 ;; Standard non conditional configuration
 ;;
-;; ; Turn off backup file
-;; (setq make-backup-files nil)
-
-
-
-
+; Turn off backup file
+; (setq make-backup-files nil)
 ; Paren matching
 (show-paren-mode 1)
 (setq show-paren-style 'parenthesis)
@@ -72,23 +68,17 @@
 ; Show the current line and column numbers
 (setq column-number-mode t)
 (setq line-number-mode t)
-
-
-
-; Tab width is four characters
+; Tab width is four characters, no tabs on indents
 (setq tab-width 4)
-; ????
+(indent-tabs-mode nil)
+; When searching be case insensitive
 (setq case-fold-search t)
-
-
 ; Turn off the annoying newbie messages
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-screen t)
-;(setq inhibit-startup-message t) 
 
-
-
-
+; ESC-G is goto-line, not standard, but ingrained in memory cells
+(global-set-key "\eg" 'goto-line)
 
 ;;
 ;;------------------------------------------------------------
@@ -199,7 +189,6 @@
 ;;  '(tool-bar-mode nil nil (tool-bar))
 ;;  '(version-control (quote never)))
 
-(global-set-key "\eg" 'goto-line)
 (global-set-key [f14] 'undo)
 (setq-default ispell-program-name "aspell")
 (ispell-change-dictionary "british" t)
@@ -211,10 +200,6 @@
 ;(global-font-lock-mode 1)
 (add-hook 'html-mode-hook 'flyspell-mode)
 
-;;;
-;;; EasyPG hooks
-;;;
-;(require 'epa-setup)
 
 
 ; Load local settings, these are not in rev control and are specific
