@@ -70,7 +70,7 @@
 (setq line-number-mode t)
 ; Tab width is four characters, no tabs on indents
 (setq tab-width 4)
-(indent-tabs-mode nil)
+(setq indent-tabs-mode nil)
 ; When searching be case insensitive
 (setq case-fold-search t)
 ; Turn off the annoying newbie messages
