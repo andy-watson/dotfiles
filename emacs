@@ -205,4 +205,4 @@
 ; Load local settings, these are not in rev control and are specific
 ; to the user account on a specific system. NB if file isn't there
 ; don't sweat it.
-(load "~/.emacs.d/local-settings")
+(load "~/.emacs.d/local-settings" 'missing-ok)
