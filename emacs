@@ -69,8 +69,8 @@
 (setq column-number-mode t)
 (setq line-number-mode t)
 ; Tab width is four characters, no tabs on indents
-(setq tab-width 4)
-(setq indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
 ; When searching be case insensitive
 (setq case-fold-search t)
 ; Turn off the annoying newbie messages
@@ -134,75 +134,11 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-
-
-;
-;------------------------------------------------------------
-; OLD stuf
-;
-
-
-;;;(setq x-pointer-foreground-color   "white")
-;;;(setq x-pointer-background-color   "black")
-;;;(setq initial-frame-alist '((width . 80) (height . 42)))
-
-;; '(default ((t (:foreground "white" :background "black"))))
-
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;;  '(default ((t (:foreground "black" :background "#FFF7E9"))))
-;;  '(border ((t (:background "#AE00B200C300"))))
-;;  '(font-lock-comment-face ((t (:foreground "gray60"))))
-;;  '(font-lock-doc-string-face ((t (:foreground "green"))))
-;;  '(font-lock-function-name-face ((t (:foreground "magenta"))))
-;;  '(font-lock-keyword-face ((t (:foreground "orange"))))
-;;  '(font-lock-string-face ((t (:foreground "blue"))))
-;;  '(fringe ((((class color) (background light)) (:background "#FFF7E9" :foreground "blue"))))
-;;  '(info-node ((t (:underline t :foreground "blue"))))
-;;  '(info-xref ((t (:underline t :foreground "red"))))
-;;  '(isearch ((t (:foreground "black" :background "red"))))
-;;  '(mode-line ((t (:foreground "black" :background "gray"))))
-;;  '(mode-line-buffer-id ((t (:inherit ModeLine :foreground "black" :weight bold))))
-;;  '(modeline-mousable ((t (:foreground "red" :background "blue"))))
-;;  '(post-quoted-text-face ((((class color) (background light)) (:italic t :foreground "Sienn"))))
-;;  '(scroll-bar ((t (:background "#AE00B200C300" :foreground "#000000000000"))))
-;;  '(text-cursor ((t (:foreground "grey60" :background "blue"))))
-;;  '(tool-bar ((((type x w32 mac) (class color)) (:background "#AE00B200C300" :foreground "black" :box (:line-width 1 :style released-button)))))
-;;  '(widget-documentation-face ((((class color) (background light)) (:foreground "green"))) t)
-;;  '(widget-field-face ((((class grayscale color) (background light)) nil)) t)
-;;  '(zmacs-region ((t (:foreground "gray" :background "blue")))))
-
-;; (custom-set-variables
-;;   ;; custom-set-variables was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;; ; '(current-language-environment "ASCII")
-;;  '(fortran-tab-mode-default nil)
-;;  '(indent-tabs-mode nil)
-;;  '(normal-erase-is-backspace t)
-;;  '(scroll-bar-mode (quote right))
-;;  '(tags-add-tables (quote ask-user))
-;;  '(tool-bar-mode nil nil (tool-bar))
-;;  '(version-control (quote never)))
-
-(global-set-key [f14] 'undo)
-(setq-default ispell-program-name "aspell")
-(ispell-change-dictionary "british" t)
-
-;;;
-;;; Automatically do syntax highlighting, paren matching
-;;; and on the fly spelling for certain file types.
-;;;
-;(global-font-lock-mode 1)
-(add-hook 'html-mode-hook 'flyspell-mode)
-
-
-
-; Load local settings, these are not in rev control and are specific
-; to the user account on a specific system. NB if file isn't there
-; don't sweat it.
+;;
+;;------------------------------------------------------------
+;;
+;; Load local settings, these are not in rev control and are specific
+;; to the user account on a specific system. NB if file isn't there
+;; don't sweat it.
+;;
 (load "~/.emacs.d/local-settings" 'missing-ok)
