@@ -48,7 +48,10 @@
   "Are we running Carbon Emacs on OS-X?")
 ;
 ;------------------------------------------------------------
-; Set paths to include my local stuff
+; Set paths to include my local stuff. Note user-lisp comes first
+; overriding any installation stuff, missing-lisp comes last
+; this is so that we use installation version if available before
+; falling through to stuff in here
 ;
 (setq load-path (cons "~/.emacs.d/user-lisp/" load-path))
 
@@ -134,6 +137,11 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;; ESS
+(setq ess-S-assign-key (kbd "C-="))
+(add-hook 'ess-mode-hook
+  (lambda ()
+    (ess-toggle-underscore nil )))
 ;;
 ;;------------------------------------------------------------
 ;;
