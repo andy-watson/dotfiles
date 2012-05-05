@@ -96,7 +96,12 @@
   (global-font-lock-mode 1)
   (setq x-pointer-foreground-color "white")
   (setq x-pointer-background-color "black")
-  ;; TODO font stuff
+  ;; default font stuff
+  (set-face-attribute 'default nil :height 120)
+  ;; Nice dark solarized colour scheme
+  (require 'color-theme)
+  (require 'color-theme-solarized)
+  (color-theme-solarized-dark)
   )
 
 (when cocca_b
