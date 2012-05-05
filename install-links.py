@@ -23,7 +23,7 @@ if ( not cwd_abs.startswith( home_dir )):
     print "Error: the dotfiles do not lie within your home directory"
     sys.exit( 1 )
 cwd_rel = cwd_abs[len(home_dir)+1:]
-print cwd_rel
+#print cwd_rel
 
 print "Installing dotfile symlinks"
 for dotfile in link_these_dotfiles:

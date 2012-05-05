@@ -22,7 +22,7 @@ LSCOLORS=exfxbxbxxxbxbxababxxxx
 
 # Os specific customisations
 case "$OSTYPE" in
-    "darwin10.0")
+    "darwin10.0" | "darwin11")
         # Enthought python
         PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 
