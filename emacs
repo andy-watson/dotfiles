@@ -83,54 +83,58 @@
 ; ESC-G is goto-line, not standard, but ingrained in memory cells
 (global-set-key "\eg" 'goto-line)
 
-;;
 ;;------------------------------------------------------------
-;; Variant specific config
 ;;
-;
-;------------------------------------------------------------
-; Window system specific setup
-;
-(when X11_b
-  ;; X11 window system
-  (global-font-lock-mode 1)
-  (setq x-pointer-foreground-color "white")
-  (setq x-pointer-background-color "black")
-  ;; default font stuff
-  (set-face-attribute 'default nil :height 120)
-  ;; Nice dark solarized colour scheme
-  (require 'color-theme)
-  (require 'color-theme-solarized)
-  (color-theme-solarized-dark)
+;; Setup of new frames
+;;
+;; This is done as a hook so that emacsclient generated frames
+;; get the customisations, see:
+;;     http://stackoverflow.com/questions/9287815/how-to-check-if-emacs-in-frame-or-in-terminal
+;;
+(defun my-frame-config (frame)
+  "Custom behaviours for new frames."
+  (with-selected-frame frame
+    (when (display-graphic-p)
+      ;; If we've got graphics use them
+      (global-font-lock-mode 1)
+      ;; don't waste space with toolbar
+      (tool-bar-mode -1)
+      ;; Nice dark solarized colour scheme
+      (require 'color-theme)
+      (require 'color-theme-solarized)
+      (color-theme-solarized-dark)
+      (when (eq window-system 'x)
+        ;; default font stuff
+        (set-face-attribute 'default nil :height 120)
+      )
+      (when (eq window-system 'ns)
+        ;; Extended keyboard delete key needs explicitly mapping
+        ;; to give forward deletion
+        (global-set-key '[(kp-delete)] 'delete-char)  ;;
+        ;; Play with alt/cmd -> meta mappings so we can use alt key
+        ;; to get at 'special' characters such as hash on a UK keyboard!
+        ;;
+        (setq mac-option-key-is-meta nil)
+        (setq mac-command-key-is-meta t)
+        (setq mac-command-modifier 'meta)
+        (setq mac-option-modifier nil)
+        ;; Set buffer size to 80x40 and a default font height
+        (setq default-frame-alist '((width . 80)(height . 40)))
+        (set-face-attribute 'default nil :height 160)
+        (blink-cursor-mode -1)
+      )
+    )
+    (when (eq window-system nil)
+      ;; On consoles we don't want font-lock turned on, as it usually
+      ;; maps some (wanted) colour onto the background....
+      (global-font-lock-mode 0)
+    )
   )
-
-(when cocca_b
-  ;; Mac OS-X
-  (global-font-lock-mode 1)
-  (setq tool-bar-mode nil)
-  ;; Extended keyboard delete key needs explicitly mapping
-  ;; to give forward deletion
-  (global-set-key '[(kp-delete)] 'delete-char)  ;;
-  ;; Play with alt/cmd -> meta mappings so we can use alt key
-  ;; to get at 'special' characters such as hash on a UK keyboard!
-  ;;
-  (setq mac-option-key-is-meta nil)
-  (setq mac-command-key-is-meta t)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier nil)
-  ;; Set buffer size to 80x40 and a default font height
-  (setq default-frame-alist '((width . 80)(height . 40)))
-  (set-face-attribute 'default nil :height 160)
-  ;; Nice dark solarized colour scheme
-  (require 'color-theme)
-  (require 'color-theme-solarized)
-  (color-theme-solarized-dark)
-  (blink-cursor-mode -1))
-
-(when console_b
-  ;; On consoles we don't want font-lock turned on, as it usually
-  ;; maps some (wanted) colour onto the background....
-  (global-font-lock-mode 0))
+)
+;; run now
+(my-frame-config (selected-frame))
+;; and later
+(add-hook 'after-make-frame-functions 'my-frame-config)
 
 ;;
 ;;------------------------------------------------------------
