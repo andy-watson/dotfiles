@@ -39,11 +39,6 @@ case "$OSTYPE" in
         # For simpl library dependancies ldd -> otool
         alias ldd="otool -L"
 
-        # Use Carbon Emacs app over standard command line version
-        if [ -x "/Applications/Emacs.app" ]; then
-            alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-        fi
-
         alias ls='ls -G'
         alias grep='grep --colour=auto'
         ;;
@@ -55,3 +50,7 @@ case "$OSTYPE" in
         ;;
 esac
 
+alias e=~/.dotfiles/e
+export EDITOR=~/.dotfiles/e
+
+alias ts=`date +%Y%m%dT%H%M%S`
