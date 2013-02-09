@@ -11,7 +11,7 @@ HISTCONTROL=ignoredups:ignorespace
 #
 # Lets be clear about umask, not take what has been given to us
 # as some system default
-umask 0027
+umask 022
 
 # Pretty up the command prompt
 PS1='[\u@\h \W]\$ '
