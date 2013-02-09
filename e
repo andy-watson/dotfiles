@@ -4,7 +4,7 @@
 # of course its not that simple on all OSes.
 
 case "$OSTYPE" in
-    "darwin10.0" | "darwin11")
+    "darwin10.0" | "darwin11" | "darwin12")
         if [ -x "/Applications/Emacs.app" ]; then
             # Carbon emacs ... adjust path so we don't see
             # the default (dumb) one in /usr/bin first.
@@ -14,12 +14,13 @@ case "$OSTYPE" in
             # but we can't pass that to --alternate-editor as it won't
             # get the daemon option. (This is getting really broken isn't it)
             #
-            # What I have added is a simple wrapper .../MacOS/bin/emacs
-            # that exec's .../MacOS/Emacs
-            # exec env PATH="/Applications/Emacs.app/Contents/MacOS/bin:$PATH" \
-            #     emacsclient --alternate-editor="" -c "$@"
-            export PATH="/Applications/Emacs.app/Contents/MacOS/bin:$PATH"
-            emacsclient --alternate-editor="" -c "$@"
+            # Adding a link ..../MacOS/bin/emacs -> ..../MacOS/Emacs doesn't
+            # work.
+            #
+            # Creating a script the exec's ..../MacOS/Emacs doesn't work
+            #
+            # So I've given up :-(
+            exec /Applications/Emacs.app/Contents/MacOS/Emacs "$@"
         else
             # No point in emacs client with dumb version
             exec emacs "$@"
