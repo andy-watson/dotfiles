@@ -105,7 +105,11 @@
       (color-theme-solarized-dark)
       (when (eq window-system 'x)
         ;; default font stuff
-        (set-face-attribute 'default nil :height 120)
+        (set-face-attribute 'default nil :family "Inconsolata" :height 140)
+        ;; Scroll smoothly one line at a time rather than jumping in chunks
+        (setq scroll-step 1)
+        ;; No scrollbar ... never use it
+        (scroll-bar-mode 0)
       )
       (when (eq window-system 'ns)
         ;; Extended keyboard delete key needs explicitly mapping
@@ -141,6 +145,10 @@
 ;;
 ;; Mode specific stuff
 ;;
+
+;; Most of my html editing is no jinja2 templates
+(require 'jinja2-mode)
+(add-to-list 'auto-mode-alist '("\\.html$" . jinja2-mode))
 
 ;; Enhanced Javascript Mode - http://code.google.com/p/js2-mode/
 (autoload 'js2-mode "js2" nil t)
