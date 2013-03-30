@@ -120,8 +120,10 @@
         (setq mac-option-modifier nil)
         ;; Set buffer size to 80x40 and a default font height
         (setq default-frame-alist '((width . 80)(height . 40)))
-        (set-face-attribute 'default nil :height 160)
+        (set-face-attribute 'default nil :family "Monaco" :height 160)
         (blink-cursor-mode -1)
+        ;; Smother scrolling
+        (setq scroll-step 1)
       )
     )
     (when (eq window-system nil)
@@ -151,6 +153,9 @@
 (add-hook 'ess-mode-hook
   (lambda ()
     (ess-toggle-underscore nil )))
+
+(require 'htmlize)
+(setq htmlize-output-type 'inline-css)
 ;;
 ;;------------------------------------------------------------
 ;;
